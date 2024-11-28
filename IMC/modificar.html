@@ -1,0 +1,284 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Modificar Registro IMC</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ff0000;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff0000;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px #ff0000,
+                         0 0 20px #ff0000,
+                         0 0 30px #ff0000;
+            margin-bottom: 30px;
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            from { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000; }
+            to { text-shadow: 0 0 15px #ff0000, 0 0 25px #ff0000, 0 0 35px #ff0000; }
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ff0000,
+                       0 0 20px #ff0000,
+                       inset 0 0 10px #ff0000;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-group:hover {
+            transform: translateX(10px);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ff0000;
+            text-shadow: 0 0 5px #ff0000;
+            transition: all 0.3s ease;
+        }
+
+        label:hover {
+            transform: translateX(5px);
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        input[type="range"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ff0000;
+            background: rgba(0, 0, 0, 0.6);
+            color: #ff0000;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            box-shadow: 0 0 15px #ff0000;
+            transform: translateY(-2px);
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        option {
+            background-color: #1a1a1a;
+            color: #ff0000;
+        }
+
+        .range-value {
+            display: inline-block;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        button {
+            background: transparent;
+            color: #ff0000;
+            border: 2px solid #ff0000;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            background: #ff0000;
+            color: #000;
+            box-shadow: 0 0 15px #ff0000,
+                       0 0 25px #ff0000;
+            transform: translateY(-3px);
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 0, 0, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .buttons-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #searchSection {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            animation: glowBorder 2s infinite alternate;
+        }
+
+        @keyframes glowBorder {
+            from { box-shadow: 0 0 5px #ff0000; }
+            to { box-shadow: 0 0 15px #ff0000, 0 0 25px #ff0000; }
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Modificar Registro</h1>
+    
+    <form id="updateForm" method="POST" action="modificar.php">
+        <div id="searchSection">
+            <div class="form-group">
+                <label for="searchName">Buscar por Nombre:</label>
+                <input type="text" id="searchName" name="searchName" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="nom">Nombre:</label>
+            <input type="text" id="nom" name="nom" required>
+        </div>
+
+        <div class="form-group">
+            <label for="AP">Apellido Paterno:</label>
+            <input type="text" id="AP" name="AP" required>
+        </div>
+
+        <div class="form-group">
+            <label for="AM">Apellido Materno:</label>
+            <input type="text" id="AM" name="AM" required>
+        </div>
+
+        <div class="form-group">
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" min="1" max="120" required>
+        </div>
+
+        <div class="form-group">
+            <label for="sexo">Sexo:</label>
+            <select id="sexo" name="sexo" required>
+                <option value="">Seleccione</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="enfermedad">Problema de Salud:</label>
+            <select id="enfermedad" name="enfermedad">
+                <option value="">Seleccione</option>
+                <option value="Diabetes">Diabetes</option>
+                <option value="Hipertensión">Hipertensión</option>
+                <option value="Ninguno">Ninguno</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="otra_enfermedad">Otro Problema de Salud:</label>
+            <input type="text" id="otra_enfermedad" name="otra_enfermedad">
+        </div>
+
+        <div class="form-group">
+            <label for="objetivo">Objetivo de Pérdida de Peso:</label>
+            <select id="objetivo" name="objetivo">
+                <option value="">Seleccione</option>
+                <option value="Bajar de peso">Bajar de peso</option>
+                <option value="Mantener peso">Mantener peso</option>
+                <option value="Aumentar peso">Aumentar peso</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="otro_objetivo">Otro Objetivo:</label>
+            <input type="text" id="otro_objetivo" name="otro_objetivo">
+        </div>
+
+        <div class="form-group">
+            <label for="alturaSlider">Altura (cm):</label>
+            <input type="range" id="alturaSlider" name="alturaSlider" min="100" max="220" step="1">
+            <span class="range-value" id="alturaValue">150 cm</span>
+        </div>
+
+        <div class="form-group">
+            <label for="pesoSlider">Peso (kg):</label>
+            <input type="range" id="pesoSlider" name="pesoSlider" min="30" max="200" step="0.1">
+            <span class="range-value" id="pesoValue">70 kg</span>
+        </div>
+
+        <div class="buttons-container">
+            <button type="submit">Actualizar Registro</button>
+            <button type="button" onclick="window.location.href='consulta.html'">Volver al Inicio</button>
+        </div>
+    </form>
+
+    <script>
+        // Actualizar valores de los sliders
+        const alturaSlider = document.getElementById('alturaSlider');
+        const pesoSlider = document.getElementById('pesoSlider');
+        const alturaValue = document.getElementById('alturaValue');
+        const pesoValue = document.getElementById('pesoValue');
+
+        alturaSlider.addEventListener('input', () => {
+            alturaValue.textContent = alturaSlider.value + ' cm';
+            calcularIMC();
+        });
+
+        pesoSlider.addEventListener('input', () => {
+            pesoValue.textContent = pesoSlider.value + ' kg';
+            calcularIMC();
+        });
+
+        function calcularIMC() {
+            const altura = alturaSlider.value / 100; // convertir a metros
+            const peso = pesoSlider.value;
+            const imc = peso / (altura * altura);
+            document.getElementById('IMC').value = imc.toFixed(2);
+        }
+
+        // Buscar registro
+        document.getElementById('searchName').addEventListener('input', function() {
+            // Aquí puedes agregar la lógica para buscar en la base de datos
+            // y autocompletar los campos del formulario
+        });
+    </script>
+</body>
+</html>

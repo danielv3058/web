@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dietas y Ejercicios para IMC 40 o más</title>
+
+</head>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+  }
+  
+  header {
+    background-color: #ff0000;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ff0000;
+  }
+  
+  h1 {
+    color: #fff;
+    text-shadow: 0 0 10px #ff0000;
+  }
+  
+  main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #333;
+    border: 1px solid #ff0000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ff0000;
+  }
+  
+  section {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #ff0000;
+  }
+  
+  h2 {
+    color: #ff0000;
+    text-shadow: 0 0 10px #ff0000;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  li {
+    padding: 10px;
+    border-bottom: 1px solid #ff0000;
+  }
+  
+  li:last-child {
+    border-bottom: none;
+  }
+  
+  footer {
+    background-color: #ff0000;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #ff0000;
+  }
+  
+  footer p {
+    color: #fff;
+    text-shadow: 0 0 10px #ff0000;
+  }
+
+  @keyframes neonPulse {
+0% {
+  box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+}
+50% {
+  box-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000;
+}
+100% {
+  box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+}
+}
+
+@keyframes textGlow {
+0% {
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+}
+50% {
+  text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000;
+}
+100% {
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+}
+}
+
+body {
+font-family: Arial, sans-serif;
+background-color: #000;
+color: #fff;
+}
+
+header {
+background-color: rgba(255, 0, 0, 0.2);
+padding: 20px;
+text-align: center;
+border-bottom: 2px solid #ff0000;
+box-shadow: 0 0 20px #ff0000;
+transition: all 0.3s ease;
+}
+
+header:hover {
+background-color: rgba(255, 0, 0, 0.3);
+box-shadow: 0 0 30px #ff0000;
+}
+
+h1 {
+color: #fff;
+text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+animation: textGlow 2s infinite;
+transition: all 0.3s ease;
+}
+
+h1:hover {
+transform: scale(1.05);
+text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000;
+}
+
+main {
+max-width: 800px;
+margin: 20px auto;
+padding: 20px;
+background-color: rgba(51, 51, 51, 0.8);
+border: 2px solid #ff0000;
+border-radius: 10px;
+box-shadow: 0 0 20px #ff0000;
+animation: neonPulse 2s infinite;
+transition: all 0.3s ease;
+}
+
+main:hover {
+transform: translateY(-5px);
+box-shadow: 0 0 30px #ff0000;
+}
+
+section {
+margin-bottom: 20px;
+padding: 20px;
+border-bottom: 2px solid #ff0000;
+transition: all 0.3s ease;
+}
+
+section:hover {
+background-color: rgba(255, 0, 0, 0.1);
+transform: translateX(10px);
+}
+
+h2 {
+color: #ff0000;
+text-shadow: 0 0 10px #ff0000;
+transition: all 0.3s ease;
+}
+
+h2:hover {
+transform: scale(1.05);
+text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000;
+}
+
+ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+li {
+padding: 10px;
+border-bottom: 1px solid #ff0000;
+transition: all 0.3s ease;
+position: relative;
+}
+
+li:hover {
+background-color: rgba(255, 0, 0, 0.1);
+transform: translateX(10px);
+box-shadow: 0 0 15px #ff0000;
+}
+
+li:last-child {
+border-bottom: none;
+}
+
+li::before {
+content: '';
+position: absolute;
+left: 0;
+bottom: 0;
+width: 0;
+height: 2px;
+background-color: #ff0000;
+transition: width 0.3s ease;
+}
+
+li:hover::before {
+width: 100%;
+}
+
+footer {
+background-color: rgba(255, 0, 0, 0.2);
+padding: 10px;
+text-align: center;
+border-top: 2px solid #ff0000;
+box-shadow: 0 0 20px #ff0000;
+transition: all 0.3s ease;
+}
+
+footer:hover {
+background-color: rgba(255, 0, 0, 0.3);
+box-shadow: 0 0 30px #ff0000;
+}
+
+footer p {
+color: #fff;
+text-shadow: 0 0 10px #ff0000;
+transition: all 0.3s ease;
+animation: textGlow 2s infinite;
+}
+
+footer p:hover {
+transform: scale(1.05);
+text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000;
+}
+input[type="button"]:hover, input[type="submit"]:hover {
+  background-color: #ff3333;
+  box-shadow: 0 0 20px #ff0000;
+  transform: translateY(-3px);
+}
+input[type="button"], input[type="submit"] {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+</style>
+<body>
+	<header>
+		<h1>Dietas y Ejercicios para IMC 40 o más</h1>
+	</header>
+	<main>
+		<section>
+			<h2>Introducción</h2>
+			<p>Si tienes un IMC de 40 o más, estás en un rango de obesidad clase III. Es importante adoptar un estilo de vida saludable y buscar ayuda médica para reducir el riesgo de enfermedades crónicas.</p>
+		</section>
+		<section>
+			<h2>Dietas recomendadas.</h2>
+			<ul>
+				<li>-- Dieta baja en calorías: 800-1000 calorías diarias</li>
+				<li>-- Dieta rica en proteínas y fibra</li>
+				<li>-- Dieta baja en grasas saturadas y azúcares</li>
+				<li>-- Dieta mediterránea: frutas, verduras, granos integrales y proteínas magras</li>
+				<li>-- Dieta con suplementos nutricionales: vitaminas y minerales esenciales</li>
+			</ul>
+		</section>
+		<section>
+			<h2>Ejercicios recomendados.</h2>
+			<ul>
+				<li>-- Caminata diaria de 60-90 minutos</li>
+				<li>-- Ejercicios de fuerza con pesas moderadas</li>
+				<li>-- Yoga o estiramientos para mejorar la flexibilidad</li>
+				<li>-- Ciclismo o natación para mejorar la resistencia cardiovascular</li>
+				<li>-- Entrenamiento de intervalos de alta intensidad (HIIT)</li>
+				<li>-- Ejercicios de equilibrio y coordinación</li>
+			</ul>
+		</section>
+		<section>
+			<h2>Consejos adicionales.</h2>
+			<ul>
+				<li>-- Beber al menos 2 litros de agua al día</li>
+				<li>-- Dormir 7-8 horas cada noche</li>
+				<li>-- Evitar el estrés y la ansiedad</li>
+				<li>-- Realizar actividades sociales y recreativas</li>
+				<li>-- Consultar con un profesional de la salud antes de iniciar cualquier plan</li>
+			</ul>
+		</section>
+		<section>
+			<h2>Ejemplos de comidas saludables.</h2>
+			<ul>
+				<li>-- Desayuno: avena con frutas y nueces</li>
+				<li>-- Almuerzo: pollo a la plancha con verduras y quinoa</li>
+				<li>-- Cena: pescado al horno con ensalada y granos integrales</li>
+				<li>-- Merienda: yogur griego con frutas y granola</li>
+			</ul>
+		</section>
+    <center>  <a href="IMC1.html"><input type="button" value="REGRESAR"></a> </center>
+	</main>
+	<footer>
+		<p>&copy; 2024 Dietas y Ejercicios para IMC 40 o más</p>
+	</footer>
+</body>
+</html>

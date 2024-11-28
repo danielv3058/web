@@ -1,0 +1,556 @@
+<html>
+<head>
+    <title>Calcula tu IMC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+          background-color: #000;
+          font-family: Arial, sans-serif;
+          color: #fff;
+        }
+      
+        .container {
+          width: 80%;
+          margin: 40px auto;
+          background-color: rgba(255, 0, 0, 0.2);
+          padding: 20px;
+          border: 1px solid #ff0000;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+      
+        h1 {
+          text-align: center;
+          color: #ff0000;
+          text-shadow: 0 0 10px #ff0000;
+        }
+      
+        h8 {
+          text-align: center;
+          color: #ff0000;
+          font-size: 14px;
+        }
+      
+        label {
+          display: block;
+          margin-bottom: 10px;
+          color: #ff0000;
+        }
+      
+        input[type="text"], input[type="number"], select {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 20px;
+          border: 1px solid #ff0000;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+        }
+      
+        input[type="range"] {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+      
+        output {
+          font-size: 18px;
+          font-weight: bold;
+          color: #ff0000;
+        }
+      
+        .error {
+          color: #ff0000;
+          font-size: 14px;
+        }
+      
+        .result-box {
+          background-color: rgba(255, 0, 0, 0.2);
+          padding: 20px;
+          border: 1px solid #ff0000;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+      
+        .imc-value {
+          font-size: 24px;
+          font-weight: bold;
+          color: #ff0000;
+        }
+      
+        .imc-classification, .imc-risk {
+          font-size: 18px;
+          color: #ff0000;
+        }
+      
+        .classification-table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+      
+        .classification-table th, .classification-table td {
+          border: 1px solid #ff0000;
+          padding: 10px;
+          text-align: center;
+        }
+      
+        .classification-table th {
+          background-color: rgba(255, 0, 0, 0.2);
+        }
+      
+        .underweight, .normal-weight, .overweight, .obesity1, .obesity2, .obesity3 {
+          background-color: rgba(255, 0, 0, 0.1);
+        }
+      
+        .underweight {
+          color: #00ff00;
+        }
+      
+        .normal-weight {
+          color: #00ffff;
+        }
+      
+        .overweight {
+          color: #8d8f12;
+        }
+      
+        .obesity1 {
+          color: #ff9900;
+        }
+      
+        .obesity2 {
+          color: #ff6600;
+        }
+      
+        .obesity3 {
+          color: #ff0000;
+        }
+      
+        input[type="button"], input[type="submit"] {
+          background-color: #ff0000;
+          color: #fff;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+      
+        input[type="button"]:hover, input[type="submit"]:hover {
+          background-color: #ff6600;
+        }
+        option{
+          color:#000
+        }
+ #pesoBajoButton {
+display: none;
+}
+#pesoNormalButton {
+display: none;
+}
+#sobrepesoButton {
+display: none;
+}
+#obesidad1Button {
+display: none;
+}
+#obesidad2Button {
+display: none;
+}
+#obesidad3Button {
+display: none;
+}
+@keyframes neonPulse {
+  0% {
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+  }
+  50% {
+    box-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+  }
+  100% {
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+  }
+}
+
+@keyframes cursorTrail {
+  0% {
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px #ff0000, 0 0 40px #ff0000;
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+    transform: scale(1);
+  }
+}
+
+body {
+  background-color: #000;
+  font-family: Arial, sans-serif;
+  color: #fff;
+ 
+}
+
+/* Cursor personalizado con efecto neón */
+body::after {
+  content: '';
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: 2px solid #ff0000;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: 0.1s;
+  z-index: 9999;
+  animation: neonPulse 2s ;
+}
+
+.container {
+  width: 80%;
+  margin: 40px auto;
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 20px;
+  border: 1px solid #ff0000;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ff0000;
+  transition: all 0.3s ease;
+}
+
+.container:hover {
+  animation: cursorTrail 1.5s ;
+}
+
+h1 {
+  text-align: center;
+  color: #ff0000;
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+  transition: all 0.3s ease;
+}
+
+h1:hover {
+  text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+  transform: scale(1.1);
+}
+
+input[type="text"], input[type="number"], select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ff0000;
+  border-radius: 5px;
+  background: rgba(255, 0, 0, 0.1);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:hover, input[type="number"]:hover, select:hover {
+  box-shadow: 0 0 15px #ff0000;
+  transform: translateY(-2px);
+}
+
+input[type="button"], input[type="submit"] {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+input[type="button"]:hover, input[type="submit"]:hover {
+  background-color: #ff3333;
+  box-shadow: 0 0 20px #ff0000;
+  transform: translateY(-3px);
+}
+
+.result-box {
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 20px;
+  border: 1px solid #ff0000;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.result-box:hover {
+  animation: cursorTrail 1.5s infinite;
+}
+
+/* Mantener el resto de los estilos originales y agregar transiciones */
+.classification-table th, .classification-table td {
+  border: 1px solid #ff0000;
+  padding: 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.classification-table th:hover, .classification-table td:hover {
+  background-color: rgba(255, 0, 0, 0.3);
+  box-shadow: 0 0 15px #ff0000;
+}
+.logo{
+  border-radius: 20px;
+}
+
+      </style>
+</head>
+<script type="text/javascript">
+  
+  document.addEventListener('mousemove', (e) => {
+  const cursor = document.querySelector('body::after');
+  if (cursor) {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  }
+});
+
+    function Calcular() {
+        var form = document.miformulario;
+        var altura = parseFloat(form.alturaSlider.value);
+        var peso = parseFloat(form.pesoSlider.value);
+
+        if (altura > 0 && peso > 0) {
+            form.IMC.value = (peso / (altura * altura)).toFixed(2);
+            select();
+        } else {
+            alert("Por favor, introduce valores válidos para altura y peso.");
+        }
+    }
+
+    function select() {
+        var form = document.miformulario;
+        var imc = parseFloat(form.IMC.value);
+        var classification, risk, highlightClass;
+
+        if (imc < 18) {
+            classification = 'Bajo peso';
+            risk = '';
+            highlightClass = 'underweight';
+            document.getElementById('pesoBajoButton').style.display = 'block'; // Mostrar botón
+        } else if (imc >= 18 && imc < 25) {
+            classification = 'Peso normal';
+            risk = '';
+            highlightClass = 'normal-weight';
+            document.getElementById('pesoNormalButton').style.display = 'block'; // Mostrar botón
+        } else if (imc >= 25 && imc < 30) {
+            classification = 'Exceso de peso';
+            risk = 'Aumento del riesgo de comorbilidad';
+            highlightClass = 'overweight';
+            document.getElementById('sobrepesoButton').style.display = 'block'; // Mostrar botón
+        } else if (imc >= 30 && imc < 35) {
+            classification = 'Obesidad Grado I';
+            risk = '';
+            highlightClass = 'obesity1';
+            document.getElementById('obesidad1Button').style.display = 'block'; // Mostrar botón
+        } else if (imc >= 35 && imc < 40) {
+            classification = 'Obesidad Grado II';
+            risk = '';
+            highlightClass = 'obesity2';
+            document.getElementById('obesidad2Button').style.display = 'block'; // Mostrar botón
+        } else if (imc >= 40) {
+            classification = 'Obesidad Grado III';
+            risk = '';
+            highlightClass = 'obesity3';
+            document.getElementById('obesidad3Button').style.display = 'block'; // Mostrar botón
+        }
+
+        document.querySelectorAll('.classification-table td').forEach(function(td) {
+            td.style.backgroundColor = '';
+        });
+
+        if (highlightClass) {
+            document.getElementById(highlightClass).style.backgroundColor = '#FFFF00';
+        }
+
+        document.getElementById('imc-value').textContent = imc.toFixed(2);
+        document.getElementById('imc-classification').innerHTML = `Tu clasificación de IMC: <strong>${classification}</strong>`;
+        document.getElementById('imc-risk').innerHTML = `Tu riesgo de comorbilidad: <strong>${risk}</strong>`;
+        
+    }
+
+    function soloLetras(str) {
+        return /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(str);
+    }
+
+    function soloNumeros(str) {
+        return /^\d+$/.test(str);
+    }
+
+    function validarFormulario() {
+        let isValid = true;
+        const camposLetras = ['nombre', 'apellidoPaterno', 'apellidoMaterno'];
+
+        camposLetras.forEach(campo => {
+            const element = document.getElementById(campo);
+            const errorElement = document.getElementById(`${campo}Error`);
+            if (!soloLetras(element.value)) {
+                errorElement.style.display = 'block';
+                isValid = false;
+            } else {
+                errorElement.style.display = 'none';
+            }
+        });
+
+        const edad = document.getElementById('edad');
+        const edadError = document.getElementById('edadError');
+        if (!soloNumeros(edad.value) || edad.value < 15 || edad.value > 100) {
+            edadError.style.display = 'block';
+            isValid = false;
+        } else {
+            edadError.style.display = 'none';
+        }
+
+        return isValid;
+    }
+</script>
+<body>
+    <form name="miformulario" method="post" action="cone.php" onsubmit="return validarFormulario()">
+        <div class="container">
+          <img src="logo.jpg" width="150" style="float: right; margin-right: 10px;">
+
+            <div class="form-group">
+              
+              <h1>CALCULADOR DE IMC</h1>
+                  <center>  <h8>(Indice De Masa Corporal)</h8></center>
+                    <br><br>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nom">
+                <div id="nombreError" class="error">El nombre debe contener solo letras</div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="apellidoPaterno">Apellido Paterno:</label>
+                <input type="text" id="apellidoPaterno" name="AP">
+                <div id="apellidoPaternoError" class="error">El apellido paterno debe contener solo letras</div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="apellidoMaterno">Apellido Materno:</label>
+                <input type="text" id="apellidoMaterno" name="AM">
+                <div id="apellidoMaternoError" class="error">El apellido materno debe contener solo letras</div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="edad">Edad:</label>
+                <input type="number" id="edad" name="edad" min="15" max="100">
+                <div id="edadError" class="error">La edad debe estar entre 15 y 100 a&#241;os</div>
+            </div>
+            <br>
+        Sexo:
+        <select id="sexo" name="sexo">
+            <option value="">Seleccione una opcion</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+        </select>
+        <br><br>
+        <h4>Marca cualquier problema de salud con el que hayas sido diagnosticado o que puedas tener.</h4>
+        
+        Problema De Salud:
+       
+        <select id="enfermedad" name="enfermedad">
+            <option value="">Seleccione una opcion</option>
+            <option value="Diabetes Tipo 2">Tipo 2 de diabetes</option>
+            <option value="Apnea del sue&#241;o">Apnea del sue&#241;o o ronquidos</option>
+            <option value="Enfermedad cardiaca">Enfermedad cardiaca</option>
+            <option value="Presion arterial alta">Presion arterial alta</option>
+            <option value="Infertilidad">Infertilidad</option>
+            <option value="Sindrome de Ovario Poliquistico">Sindrome de Ovario Poliquistico</option>
+            <option value="Ansiedad y depresion">Ansiedad y depresion</option>
+            <option value="Gota">Gota</option>
+            <option value="Henfermedad hepatica">Henfermedad hepatica</option>
+            <option value="Asma">Asma</option>
+            <option value="Calculos biliares">Calculos biliares</option>
+            <option value="Reflujo o Acides estomacal">Reflujo o Acides estomacal</option> 
+        </select>
+    
+        <br><br>
+        Otro: <input type="text" name="otra_enfermedad" value="nada"> <br><br>
+
+        <h4>Objetivos de perdida de peso:</h4>
+
+        Objetivos:
+        <select id="objetivo" name="objetivo">
+            <option value="">Seleccione una opcion</option>
+            <option value="Quiero tener mas energia">Quiero tener mas energia</option>
+            <option value="Quiero ser mas activo/a">Quiero ser mas activo/a</option>
+            <option value="Quiero vivir mas tiempo">Quiero vivir mas tiempo</option>
+            <option value="Quiero tener hijos">Quiero tener hijos</option>
+            <option value="Quiero mejorar mi vida profesional">Quiero mejorar mi vida profesional</option>
+            <option value="Quiero tener mas confianza">Quiero tener mas confianza</option>
+        </select><br><br>
+
+        Otro: <input type="text" name="otro_objetivo" value="nada"> <br><br><br>
+
+        <label for="alturaSlider">Altura (m):</label>
+        <input type="range" id="alturaSlider" name="alturaSlider" 
+               min="1.0" max="2.5" step="0.01" value="1.70"
+               oninput="alturaOutput.value = this.value">
+        <output id="alturaOutput">1.70</output>
+        <br><br>
+        
+        <label for="pesoSlider">Peso (kg):</label>
+        <input type="range" id="pesoSlider" name="pesoSlider" 
+               min="30" max="200" step="0.1" value="70"
+               oninput="pesoOutput.value = this.value">
+        <output id="pesoOutput">70</output>
+        <br><br>
+        
+        TU IMC ES DE: <input type="text" name="IMC"><br><br>
+        <center>
+          <p>"Asegurate de guardar tus datos antes de ver las dietas"</p>
+        <input type="button" value="CALCULAR" onclick="Calcular()" onclick="mostrarBoton()">
+       
+        
+    
+        <a href="consulta.html"><input type="button" value="REGRESAR"></a>
+        <input type="submit" value="GUARDAR">
+      </center>
+    </div>
+   
+  </form>
+
+
+
+
+
+    
+    <div class="result-box">
+        <div class="imc-value" id="imc-value">25.1</div>
+        <div class="imc-classification" id="imc-classification">TU CLASIFICACION DE IMC: <strong>Exceso de peso</strong></div>
+        <div class="imc-risk" id="imc-risk">TU RIESGO DE COMORBILIDAD: <strong>Aumento del riesgo</strong></div>
+        <div class="imc-note">El IMC no es relevante si eres menor de 18 a&#241;os o estas en embarazo.</div>
+    </div>
+    <table class="classification-table">
+        <tr>
+            <th colspan="6">TU CLASIFICACION DE IMC</th>
+        </tr>
+        <tr>
+            <td class="underweight" id="underweight">Abajo 18<br><strong>Bajo peso</strong></td>
+            <td class="normal-weight" id="normal-weight">18 - 25<br><strong>Peso normal</strong></td>
+            <td class="overweight" id="overweight">25 - 30<br><strong>Exceso de peso</strong><br>Aumento del riesgo de comorbilidad</td>
+            <td class="obesity1" id="obesity1">30 - 35<br><strong>Obesidad Grado I</strong></td>
+            <td class="obesity2" id="obesity2">35 - 40<br><strong>Obesidad Grado II</strong></td>
+            <td class="obesity3" id="obesity3">40 - 45<br><strong>Obesidad Grado III</strong></td>
+        </tr>
+    </table>
+    <br><br>
+      <center>
+        <div class="buttons-container">
+            <input type="button" id="pesoBajoButton" class="classification-button" value="Peso Bajo" onclick="window.location.href='pesobajo.html'">
+            <input type="button" id="pesoNormalButton" class="classification-button" value="Peso Normal" onclick="window.location.href='pesonormal.html'">
+            <input type="button" id="sobrepesoButton" class="classification-button" value="Sobrepeso" onclick="window.location.href='sobrepeso.html'">
+            <input type="button" id="obesidad1Button" class="classification-button" value="Obesidad Grado I" onclick="window.location.href='obesidad1.html'">
+            <input type="button" id="obesidad2Button" class="classification-button" value="Obesidad Grado II" onclick="window.location.href='obesidad2.html'">
+            <input type="button" id="obesidad3Button" class="classification-button" value="Obesidad Grado III" onclick="window.location.href='obesidad3.html'">
+            <br>
+            <h3>Un familiar o tu tiene diabetes?</h3>
+           <a href="https://drive.google.com/file/d/1E0YafJbF5PWWGsQN6xWtl3ZrUvX2eXZu/view?usp=sharing">HAZ CLICK AQUI</a>
+       </center>
+        </div>
+       
+</body>
+</html>
